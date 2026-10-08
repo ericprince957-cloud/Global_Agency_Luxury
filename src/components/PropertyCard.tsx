@@ -13,96 +13,136 @@ export default function PropertyCard({ property, onCompare, isCompared }: Proper
   );
 
   return (
-    <div className="property-card bg-white rounded-2xl overflow-hidden shadow-md shadow-gray-100 border border-gray-50 group">
-      {/* Image */}
-      <div className="relative overflow-hidden aspect-[4/3]">
+    <div className="property-card">
+      {/* Image Section */}
+      <div className="card-image-wrapper">
         <img
           src={property.image}
           alt={property.title}
-          className="card-image w-full h-full object-cover"
+          className="card-image"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f]/60 via-transparent to-transparent" />
+        <div className="card-image-overlay" />
         
         {/* Badges */}
-        <div className="absolute top-4 left-4 flex flex-col gap-2">
+        <div className="card-badges">
           {property.exclusive && (
             <span className="badge-exclusive">Exclusive</span>
           )}
-          <span className={`text-xs font-semibold px-3 py-1 rounded ${
-            property.status === 'For Sale' ? 'bg-green-500/90 text-white' :
-            property.status === 'For Rent' ? 'bg-blue-500/90 text-white' :
-            'bg-gray-500/90 text-white'
-          }`}>
+          <span style={{
+            fontSize: '0.7rem',
+            fontWeight: 600,
+            padding: '0.3rem 0.75rem',
+            borderRadius: '2px',
+            color: '#ffffff',
+            background: property.status === 'For Sale' ? 'rgba(34, 197, 94, 0.9)' : 
+                        property.status === 'For Rent' ? 'rgba(59, 130, 246, 0.9)' : 
+                        'rgba(107, 114, 128, 0.9)'
+          }}>
             {property.status}
           </span>
         </div>
 
-        {/* Compare checkbox */}
+        {/* Compare Button */}
         <button
           onClick={() => onCompare(property)}
-          className={`absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-            isCompared 
-              ? 'bg-[#d4af37] text-[#0a192f]' 
-              : 'bg-white/80 text-gray-600 hover:bg-white'
-          }`}
+          className="card-compare-btn"
+          style={{
+            background: isCompared ? '#d4af37' : 'rgba(255,255,255,0.9)',
+            color: isCompared ? '#0a192f' : '#6c757d'
+          }}
           title="Add to compare"
         >
-          <span className="text-xs font-bold">{isCompared ? '✓' : '+'}</span>
+          <span style={{ fontSize: '0.75rem', fontWeight: 700 }}>{isCompared ? '✓' : '+'}</span>
         </button>
 
-        {/* Price overlay */}
-        <div className="absolute bottom-4 left-4">
-          <div className="text-white font-heading text-2xl font-bold">{property.priceFormatted}</div>
+        {/* Price */}
+        <div className="card-price">
+          <div style={{
+            color: '#ffffff',
+            fontFamily: "'Playfair Display', serif",
+            fontSize: '1.5rem',
+            fontWeight: 700,
+            textShadow: '0 2px 4px rgba(0,0,0,0.3)'
+          }}>
+            {property.priceFormatted}
+          </div>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="p-5">
-        <div className="flex items-start justify-between mb-3">
-          <h3 className="font-heading text-lg font-semibold text-[#0a192f] leading-tight pr-2">
-            {property.title}
-          </h3>
-        </div>
+      {/* Content Section */}
+      <div className="card-content">
+        {/* Title */}
+        <h3 style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: '1.125rem',
+          fontWeight: 600,
+          color: '#0a192f',
+          lineHeight: 1.3,
+          marginBottom: '0.5rem'
+        }}>
+          {property.title}
+        </h3>
 
-        <div className="flex items-center text-gray-500 text-sm mb-4">
-          <MapPin size={14} className="mr-1 text-[#d4af37]" />
+        {/* Location */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.375rem',
+          color: '#6c757d',
+          fontSize: '0.875rem',
+          marginBottom: '1rem'
+        }}>
+          <MapPin size={14} style={{ color: '#d4af37', flexShrink: 0 }} />
           <span>{property.location}</span>
         </div>
 
         {/* Specs */}
-        <div className="flex items-center gap-4 text-gray-600 text-sm mb-5 pb-5 border-b border-gray-100">
+        <div className="card-specs">
           {property.beds > 0 && (
-            <div className="flex items-center gap-1.5">
-              <Bed size={16} className="text-[#d4af37]" />
-              <span>{property.beds}</span>
+            <div className="card-spec-item">
+              <Bed size={16} style={{ color: '#d4af37' }} />
+              <span>{property.beds} Beds</span>
             </div>
           )}
           {property.baths > 0 && (
-            <div className="flex items-center gap-1.5">
-              <Bath size={16} className="text-[#d4af37]" />
-              <span>{property.baths}</span>
+            <div className="card-spec-item">
+              <Bath size={16} style={{ color: '#d4af37' }} />
+              <span>{property.baths} Baths</span>
             </div>
           )}
-          <div className="flex items-center gap-1.5">
-            <Maximize size={16} className="text-[#d4af37]" />
+          <div className="card-spec-item">
+            <Maximize size={16} style={{ color: '#d4af37' }} />
             <span>{property.sqft.toLocaleString()} sqft</span>
           </div>
           {property.parking > 0 && (
-            <div className="flex items-center gap-1.5">
-              <Car size={16} className="text-[#d4af37]" />
+            <div className="card-spec-item">
+              <Car size={16} style={{ color: '#d4af37' }} />
               <span>{property.parking}</span>
             </div>
           )}
         </div>
 
-        {/* Actions */}
-        <div className="flex gap-3">
+        {/* Action Buttons */}
+        <div className="card-actions">
           <a
             href={`https://wa.me/2347025899649?text=${whatsappMessage}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center space-x-2 bg-[#0a192f] hover:bg-[#0a192f]/90 text-white py-3 rounded-lg font-medium text-sm transition-all"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              background: '#0a192f',
+              color: '#ffffff',
+              padding: '0.75rem',
+              borderRadius: '0.5rem',
+              fontWeight: 500,
+              fontSize: '0.875rem',
+              textDecoration: 'none',
+              transition: 'all 0.3s'
+            }}
           >
             <MessageCircle size={16} />
             <span>Inquire</span>
@@ -111,7 +151,19 @@ export default function PropertyCard({ property, onCompare, isCompared }: Proper
             href={`https://wa.me/2347025899649?text=${encodeURIComponent(`Hi GLOBAL AGENCY, I'd like to request a private tour of "${property.title}". When is available?`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center px-4 py-3 border-2 border-[#d4af37] text-[#d4af37] rounded-lg hover:bg-[#d4af37] hover:text-[#0a192f] transition-all text-sm font-medium"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '0.75rem 1rem',
+              border: '2px solid #d4af37',
+              color: '#d4af37',
+              borderRadius: '0.5rem',
+              fontWeight: 500,
+              fontSize: '0.875rem',
+              textDecoration: 'none',
+              transition: 'all 0.3s'
+            }}
           >
             Tour
           </a>

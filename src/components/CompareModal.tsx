@@ -10,76 +10,183 @@ export default function CompareModal({ properties, onClose }: CompareModalProps)
   if (properties.length === 0) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-[#0a192f]/80 backdrop-blur-sm" onClick={onClose} />
+    <div style={{
+      position: 'fixed',
+      inset: 0,
+      zIndex: 100,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '1rem'
+    }}>
+      {/* Backdrop */}
+      <div
+        onClick={onClose}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(10, 25, 47, 0.8)',
+          backdropFilter: 'blur(4px)'
+        }}
+      />
       
-      <div className="relative bg-white rounded-3xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+      {/* Modal Content */}
+      <div style={{
+        position: 'relative',
+        background: '#ffffff',
+        borderRadius: '1.5rem',
+        boxShadow: '0 25px 60px rgba(0,0,0,0.3)',
+        maxWidth: '72rem',
+        width: '100%',
+        maxHeight: '90vh',
+        overflow: 'auto',
+        display: 'flex',
+        flexDirection: 'column'
+      }}>
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-100 p-6 flex items-center justify-between rounded-t-3xl z-10">
+        <div style={{
+          position: 'sticky',
+          top: 0,
+          background: '#ffffff',
+          borderBottom: '1px solid #f1f3f5',
+          padding: '1.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          borderRadius: '1.5rem 1.5rem 0 0',
+          zIndex: 10
+        }}>
           <div>
-            <h3 className="font-heading text-2xl text-[#0a192f] font-semibold">Compare Properties</h3>
-            <p className="text-gray-500 text-sm mt-1">{properties.length} properties selected</p>
+            <h3 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: '1.5rem',
+              color: '#0a192f',
+              fontWeight: 600
+            }}>
+              Compare Properties
+            </h3>
+            <p style={{ color: '#6c757d', fontSize: '0.875rem', marginTop: '0.25rem' }}>
+              {properties.length} {properties.length === 1 ? 'property' : 'properties'} selected
+            </p>
           </div>
           <button
             onClick={onClose}
-            className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-all"
+            style={{
+              width: '2.5rem',
+              height: '2.5rem',
+              borderRadius: '50%',
+              background: '#f1f3f5',
+              border: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.3s'
+            }}
           >
             <X size={20} />
           </button>
         </div>
 
-        {/* Comparison Table */}
-        <div className="p-6">
-          <div className="grid gap-6" style={{ gridTemplateColumns: `repeat(${properties.length}, 1fr)` }}>
+        {/* Comparison Grid - Flexbox */}
+        <div style={{ padding: '1.5rem' }}>
+          <div className="compare-grid">
             {properties.map((property) => (
-              <div key={property.id} className="space-y-4">
+              <div key={property.id} style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem',
+                padding: '1rem',
+                background: '#f8f9fa',
+                borderRadius: '1rem'
+              }}>
                 {/* Image */}
-                <div className="aspect-[4/3] rounded-xl overflow-hidden">
-                  <img src={property.image} alt={property.title} className="w-full h-full object-cover" />
+                <div style={{ aspectRatio: '4/3', borderRadius: '0.75rem', overflow: 'hidden' }}>
+                  <img
+                    src={property.image}
+                    alt={property.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
                 </div>
 
-                {/* Details */}
+                {/* Title */}
                 <div>
-                  <h4 className="font-heading text-lg font-semibold text-[#0a192f] leading-tight">{property.title}</h4>
-                  <div className="flex items-center text-gray-500 text-sm mt-2">
-                    <MapPin size={14} className="mr-1 text-[#d4af37]" />
+                  <h4 style={{
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: '1.125rem',
+                    fontWeight: 600,
+                    color: '#0a192f',
+                    lineHeight: 1.3
+                  }}>
+                    {property.title}
+                  </h4>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.375rem',
+                    color: '#6c757d',
+                    fontSize: '0.875rem',
+                    marginTop: '0.5rem'
+                  }}>
+                    <MapPin size={14} style={{ color: '#d4af37' }} />
                     <span>{property.location}</span>
                   </div>
                 </div>
 
                 {/* Price */}
-                <div className="py-3 border-y border-gray-100">
-                  <div className="text-[#d4af37] font-heading text-xl font-bold">{property.priceFormatted}</div>
-                  <div className="text-gray-400 text-xs mt-1">{property.type}</div>
+                <div style={{
+                  padding: '0.75rem 0',
+                  borderTop: '1px solid #e9ecef',
+                  borderBottom: '1px solid #e9ecef'
+                }}>
+                  <div style={{
+                    color: '#d4af37',
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: '1.25rem',
+                    fontWeight: 700
+                  }}>
+                    {property.priceFormatted}
+                  </div>
+                  <div style={{ color: '#adb5bd', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                    {property.type}
+                  </div>
                 </div>
 
                 {/* Specs */}
-                <div className="space-y-3">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                   {property.beds > 0 && (
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="flex items-center text-gray-500"><Bed size={14} className="mr-2" /> Bedrooms</span>
-                      <span className="font-semibold text-[#0a192f]">{property.beds}</span>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.875rem' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#6c757d' }}>
+                        <Bed size={14} /> Bedrooms
+                      </span>
+                      <span style={{ fontWeight: 600, color: '#0a192f' }}>{property.beds}</span>
                     </div>
                   )}
                   {property.baths > 0 && (
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="flex items-center text-gray-500"><Bath size={14} className="mr-2" /> Bathrooms</span>
-                      <span className="font-semibold text-[#0a192f]">{property.baths}</span>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.875rem' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#6c757d' }}>
+                        <Bath size={14} /> Bathrooms
+                      </span>
+                      <span style={{ fontWeight: 600, color: '#0a192f' }}>{property.baths}</span>
                     </div>
                   )}
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="flex items-center text-gray-500"><Maximize size={14} className="mr-2" /> Area</span>
-                    <span className="font-semibold text-[#0a192f]">{property.sqft.toLocaleString()} sqft</span>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.875rem' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#6c757d' }}>
+                      <Maximize size={14} /> Area
+                    </span>
+                    <span style={{ fontWeight: 600, color: '#0a192f' }}>{property.sqft.toLocaleString()} sqft</span>
                   </div>
                   {property.parking > 0 && (
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="flex items-center text-gray-500"><Car size={14} className="mr-2" /> Parking</span>
-                      <span className="font-semibold text-[#0a192f]">{property.parking}</span>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.875rem' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#6c757d' }}>
+                        <Car size={14} /> Parking
+                      </span>
+                      <span style={{ fontWeight: 600, color: '#0a192f' }}>{property.parking}</span>
                     </div>
                   )}
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-500">Status</span>
-                    <span className="font-semibold text-[#0a192f]">{property.status}</span>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.875rem' }}>
+                    <span style={{ color: '#6c757d' }}>Status</span>
+                    <span style={{ fontWeight: 600, color: '#0a192f' }}>{property.status}</span>
                   </div>
                 </div>
 
@@ -88,7 +195,20 @@ export default function CompareModal({ properties, onClose }: CompareModalProps)
                   href={`https://wa.me/2347025899649?text=${encodeURIComponent(`Hi GLOBAL AGENCY, I'd like to compare "${property.title}" with other properties. Can we discuss?`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full text-center bg-[#0a192f] text-white py-3 rounded-lg font-medium text-sm hover:bg-[#0a192f]/90 transition-all mt-4"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: '#0a192f',
+                    color: '#ffffff',
+                    padding: '0.75rem',
+                    borderRadius: '0.5rem',
+                    fontWeight: 500,
+                    fontSize: '0.875rem',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s',
+                    marginTop: '0.5rem'
+                  }}
                 >
                   Inquire About This Property
                 </a>
