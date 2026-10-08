@@ -39,55 +39,120 @@ export default function Testimonials() {
   const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section id="testimonials" className="py-20 lg:py-28 bg-[#f8f9fa]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="section-padding" style={{ background: '#f8f9fa' }}>
+      <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="text-[#d4af37] text-sm font-semibold uppercase tracking-widest">Testimonials</span>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-[#0a192f] font-semibold mt-4">
+        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+          <span style={{
+            color: '#d4af37',
+            fontSize: '0.8rem',
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.15em'
+          }}>
+            Testimonials
+          </span>
+          <h2 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            color: '#0a192f',
+            fontWeight: 600,
+            marginTop: '1rem'
+          }}>
             Trusted by High-Net-Worth Clients
           </h2>
         </div>
 
-        {/* Testimonial Slider */}
-        <div className="max-w-4xl mx-auto">
-          <div className="relative bg-white rounded-3xl p-8 sm:p-12 shadow-lg shadow-gray-100">
-            <Quote className="absolute top-8 left-8 text-[#d4af37]/20" size={48} />
-            
-            <div className="relative z-10">
-              <div className="flex mb-4">
+        {/* Testimonial Card */}
+        <div style={{ maxWidth: '56rem', margin: '0 auto' }}>
+          <div className="testimonial-card">
+            {/* Quote Icon */}
+            <Quote style={{
+              position: 'absolute',
+              top: '2rem',
+              left: '2rem',
+              color: 'rgba(212, 175, 55, 0.15)'
+            }} size={48} />
+
+            {/* Content */}
+            <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', flex: 1 }}>
+              {/* Stars */}
+              <div style={{ display: 'flex', gap: '0.25rem', marginBottom: '1rem' }}>
                 {[...Array(testimonials[current].rating)].map((_, i) => (
-                  <Star key={i} size={18} className="text-[#d4af37] fill-[#d4af37]" />
+                  <Star key={i} size={18} style={{ color: '#d4af37', fill: '#d4af37' }} />
                 ))}
               </div>
 
-              <p className="text-gray-700 text-lg sm:text-xl leading-relaxed mb-8 italic font-light">
+              {/* Quote Text */}
+              <p style={{
+                color: '#4a5568',
+                fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+                lineHeight: 1.8,
+                fontStyle: 'italic',
+                fontWeight: 300,
+                marginBottom: '2rem',
+                flex: 1
+              }}>
                 "{testimonials[current].text}"
               </p>
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4">
+              {/* Author & Navigation */}
+              <div className="testimonial-author">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1 }}>
                   <img
                     src={testimonials[current].image}
                     alt={testimonials[current].name}
-                    className="w-14 h-14 rounded-full object-cover border-2 border-[#d4af37]/30"
+                    style={{
+                      width: '3.5rem',
+                      height: '3.5rem',
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                      border: '2px solid rgba(212, 175, 55, 0.3)'
+                    }}
                   />
                   <div>
-                    <div className="font-semibold text-[#0a192f]">{testimonials[current].name}</div>
-                    <div className="text-sm text-gray-500">{testimonials[current].title}</div>
+                    <div style={{ fontWeight: 600, color: '#0a192f', fontSize: '0.9375rem' }}>
+                      {testimonials[current].name}
+                    </div>
+                    <div style={{ fontSize: '0.8125rem', color: '#6c757d' }}>
+                      {testimonials[current].title}
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-2">
+                {/* Navigation Buttons */}
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
                   <button
                     onClick={prev}
-                    className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#d4af37] hover:text-[#d4af37] transition-all"
+                    style={{
+                      width: '2.5rem',
+                      height: '2.5rem',
+                      borderRadius: '50%',
+                      border: '1px solid #e9ecef',
+                      background: '#ffffff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s'
+                    }}
                   >
                     <ChevronLeft size={18} />
                   </button>
                   <button
                     onClick={next}
-                    className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-[#d4af37] hover:text-[#d4af37] transition-all"
+                    style={{
+                      width: '2.5rem',
+                      height: '2.5rem',
+                      borderRadius: '50%',
+                      border: '1px solid #e9ecef',
+                      background: '#ffffff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s'
+                    }}
                   >
                     <ChevronRight size={18} />
                   </button>
@@ -96,14 +161,20 @@ export default function Testimonials() {
             </div>
 
             {/* Dots */}
-            <div className="flex justify-center mt-8 space-x-2">
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '2rem' }}>
               {testimonials.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrent(i)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    i === current ? 'bg-[#d4af37] w-6' : 'bg-gray-300'
-                  }`}
+                  style={{
+                    width: i === current ? '1.5rem' : '0.5rem',
+                    height: '0.5rem',
+                    borderRadius: '999px',
+                    background: i === current ? '#d4af37' : '#d1d5db',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s'
+                  }}
                 />
               ))}
             </div>

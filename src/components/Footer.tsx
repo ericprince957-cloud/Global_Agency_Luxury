@@ -2,43 +2,81 @@ import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-[#0a192f] pt-20 pb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#d4af37] to-[#e8c547] rounded flex items-center justify-center">
-                <span className="text-[#0a192f] font-bold text-lg font-heading">G</span>
+    <footer id="contact" style={{ background: '#0a192f', paddingTop: '5rem', paddingBottom: '2rem' }}>
+      <div className="container-custom">
+        {/* Footer Grid - Flexbox */}
+        <div className="footer-grid" style={{ marginBottom: '4rem' }}>
+          {/* Brand Column */}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {/* Logo */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem' }}>
+              <div style={{
+                width: '2.5rem',
+                height: '2.5rem',
+                background: 'linear-gradient(135deg, #d4af37, #e8c547)',
+                borderRadius: '0.375rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
+              }}>
+                <span style={{ color: '#0a192f', fontWeight: 700, fontSize: '1.125rem', fontFamily: "'Playfair Display', serif" }}>G</span>
               </div>
-              <div>
-                <span className="text-white font-heading text-xl font-semibold">GLOBAL</span>
-                <span className="text-[#d4af37] font-heading text-xl font-semibold ml-1">AGENCY</span>
+              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                <span style={{ color: '#ffffff', fontFamily: "'Playfair Display', serif", fontSize: '1.25rem', fontWeight: 600, letterSpacing: '0.05em' }}>GLOBAL</span>
+                <span style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif", fontSize: '1.25rem', fontWeight: 600, letterSpacing: '0.05em', marginLeft: '0.375rem' }}>AGENCY</span>
               </div>
             </div>
-            <p className="text-white/50 text-sm leading-relaxed mb-6">
+            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.875rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
               The premier luxury real estate consultancy in South-East Nigeria. Exclusive properties, verified titles, white-glove service.
             </p>
-            <div className="flex space-x-3">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#d4af37]/20 transition-all">
-                <span className="text-white/70 text-sm">FB</span>
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#d4af37]/20 transition-all">
-                <span className="text-white/70 text-sm">IG</span>
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#d4af37]/20 transition-all">
-                <span className="text-white/70 text-sm">TW</span>
-              </a>
+            {/* Social Links */}
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
+              {['FB', 'IG', 'TW'].map((social) => (
+                <a
+                  key={social}
+                  href="#"
+                  style={{
+                    width: '2.5rem',
+                    height: '2.5rem',
+                    borderRadius: '50%',
+                    background: 'rgba(255,255,255,0.05)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s'
+                  }}
+                >
+                  <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.75rem', fontWeight: 600 }}>{social}</span>
+                </a>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-heading text-lg font-semibold mb-6">Quick Links</h4>
-            <ul className="space-y-3">
+            <h4 style={{
+              fontFamily: "'Playfair Display', serif",
+              color: '#ffffff',
+              fontSize: '1.125rem',
+              fontWeight: 600,
+              marginBottom: '1.5rem'
+            }}>
+              Quick Links
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {['Properties', 'About Us', 'Testimonials', 'Contact'].map((link) => (
                 <li key={link}>
-                  <a href={`#${link.toLowerCase().replace(' ', '')}`} className="text-white/50 hover:text-[#d4af37] transition-colors text-sm">
+                  <a
+                    href={`#${link.toLowerCase().replace(' ', '')}`}
+                    style={{
+                      color: 'rgba(255,255,255,0.5)',
+                      textDecoration: 'none',
+                      fontSize: '0.875rem',
+                      transition: 'color 0.3s'
+                    }}
+                  >
                     {link}
                   </a>
                 </li>
@@ -48,11 +86,27 @@ export default function Footer() {
 
           {/* Property Types */}
           <div>
-            <h4 className="text-white font-heading text-lg font-semibold mb-6">Property Types</h4>
-            <ul className="space-y-3">
+            <h4 style={{
+              fontFamily: "'Playfair Display', serif",
+              color: '#ffffff',
+              fontSize: '1.125rem',
+              fontWeight: 600,
+              marginBottom: '1.5rem'
+            }}>
+              Property Types
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {['Luxury Residential', 'Commercial Properties', 'Industrial Land', 'Investment Opportunities'].map((type) => (
                 <li key={type}>
-                  <a href="#properties" className="text-white/50 hover:text-[#d4af37] transition-colors text-sm">
+                  <a
+                    href="#properties"
+                    style={{
+                      color: 'rgba(255,255,255,0.5)',
+                      textDecoration: 'none',
+                      fontSize: '0.875rem',
+                      transition: 'color 0.3s'
+                    }}
+                  >
                     {type}
                   </a>
                 </li>
@@ -60,31 +114,80 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact Info */}
           <div>
-            <h4 className="text-white font-heading text-lg font-semibold mb-6">Get In Touch</h4>
-            <ul className="space-y-4">
+            <h4 style={{
+              fontFamily: "'Playfair Display', serif",
+              color: '#ffffff',
+              fontSize: '1.125rem',
+              fontWeight: 600,
+              marginBottom: '1.5rem'
+            }}>
+              Get In Touch
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <li>
-                <a href="tel:+2347025899649" className="flex items-center space-x-3 text-white/50 hover:text-[#d4af37] transition-colors text-sm">
-                  <Phone size={16} className="text-[#d4af37]" />
+                <a
+                  href="tel:+2347025899649"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    color: 'rgba(255,255,255,0.5)',
+                    textDecoration: 'none',
+                    fontSize: '0.875rem',
+                    transition: 'color 0.3s'
+                  }}
+                >
+                  <Phone size={16} style={{ color: '#d4af37', flexShrink: 0 }} />
                   <span>+234 702 589 9649</span>
                 </a>
               </li>
               <li>
-                <a href="https://wa.me/2347025899649" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 text-white/50 hover:text-[#d4af37] transition-colors text-sm">
-                  <MessageCircle size={16} className="text-[#d4af37]" />
+                <a
+                  href="https://wa.me/2347025899649"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    color: 'rgba(255,255,255,0.5)',
+                    textDecoration: 'none',
+                    fontSize: '0.875rem',
+                    transition: 'color 0.3s'
+                  }}
+                >
+                  <MessageCircle size={16} style={{ color: '#d4af37', flexShrink: 0 }} />
                   <span>WhatsApp Concierge</span>
                 </a>
               </li>
               <li>
-                <a href="mailto:info@globalagency.ng" className="flex items-center space-x-3 text-white/50 hover:text-[#d4af37] transition-colors text-sm">
-                  <Mail size={16} className="text-[#d4af37]" />
+                <a
+                  href="mailto:info@globalagency.ng"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    color: 'rgba(255,255,255,0.5)',
+                    textDecoration: 'none',
+                    fontSize: '0.875rem',
+                    transition: 'color 0.3s'
+                  }}
+                >
+                  <Mail size={16} style={{ color: '#d4af37', flexShrink: 0 }} />
                   <span>info@globalagency.ng</span>
                 </a>
               </li>
               <li>
-                <div className="flex items-start space-x-3 text-white/50 text-sm">
-                  <MapPin size={16} className="text-[#d4af37] mt-0.5" />
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '0.75rem',
+                  color: 'rgba(255,255,255,0.5)',
+                  fontSize: '0.875rem'
+                }}>
+                  <MapPin size={16} style={{ color: '#d4af37', flexShrink: 0, marginTop: '0.125rem' }} />
                   <span>Umuahia, Abia State, Nigeria</span>
                 </div>
               </li>
@@ -93,13 +196,25 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-sm">
+        <div style={{
+          borderTop: '1px solid rgba(255,255,255,0.1)',
+          paddingTop: '2rem',
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '1rem'
+        }}>
+          <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.875rem' }}>
             © 2026 GLOBAL AGENCY. All rights reserved.
           </p>
-          <div className="flex items-center space-x-6">
-            <a href="#" className="text-white/30 hover:text-white/60 text-sm transition-colors">Privacy Policy</a>
-            <a href="#" className="text-white/30 hover:text-white/60 text-sm transition-colors">Terms of Service</a>
+          <div style={{ display: 'flex', gap: '1.5rem' }}>
+            <a href="#" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.875rem', textDecoration: 'none', transition: 'color 0.3s' }}>
+              Privacy Policy
+            </a>
+            <a href="#" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.875rem', textDecoration: 'none', transition: 'color 0.3s' }}>
+              Terms of Service
+            </a>
           </div>
         </div>
       </div>

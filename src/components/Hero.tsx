@@ -2,72 +2,163 @@ import { ChevronDown, MessageCircle } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
-      {/* Background Images Slider */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[url('https://image.qwenlm.ai/generated-images/e7374e40-e746-450e-a7f3-2f54c2778c67/_result.png')] bg-cover bg-center animate-[kenburns_20s_ease-in-out_infinite_alternate]" />
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80')] bg-cover bg-center opacity-0 animate-[fadeSlider_20s_ease-in-out_infinite]" />
-      </div>
+    <section style={{
+      position: 'relative',
+      height: '100vh',
+      minHeight: '700px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden'
+    }}>
+      {/* Background Image */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        backgroundImage: "url('https://image.qwenlm.ai/generated-images/e7374e40-e746-450e-a7f3-2f54c2778c67/_result.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        animation: 'kenburns 20s ease-in-out infinite alternate'
+      }} />
 
       {/* Overlay */}
-      <div className="absolute inset-0 hero-overlay" />
+      <div className="hero-overlay" style={{ position: 'absolute', inset: 0 }} />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        <div className="animate-fade-in-up">
-          <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
-            <div className="w-2 h-2 bg-[#d4af37] rounded-full animate-pulse" />
-            <span className="text-white/90 text-sm font-medium tracking-wide">Exclusive Listings Available</span>
-          </div>
+      <div style={{
+        position: 'relative',
+        zIndex: 10,
+        textAlign: 'center',
+        padding: '0 1rem',
+        maxWidth: '72rem',
+        margin: '0 auto',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+      }}>
+        {/* Badge */}
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          background: 'rgba(255,255,255,0.1)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255,255,255,0.2)',
+          borderRadius: '999px',
+          padding: '0.5rem 1.25rem',
+          marginBottom: '2rem'
+        }}>
+          <div style={{ width: '0.5rem', height: '0.5rem', background: '#d4af37', borderRadius: '50%', animation: 'pulse 2s infinite' }} />
+          <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: '0.875rem', fontWeight: 500, letterSpacing: '0.02em' }}>
+            Exclusive Listings Available
+          </span>
+        </div>
 
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-semibold leading-tight mb-6">
-            Exclusive Luxury Properties for{' '}
-            <span className="text-gold-gradient">Discerning Investors</span>
-          </h1>
+        {/* Headline */}
+        <h1 style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: 'clamp(2.25rem, 5vw, 4.5rem)',
+          color: '#ffffff',
+          fontWeight: 600,
+          lineHeight: 1.1,
+          marginBottom: '1.5rem',
+          maxWidth: '900px'
+        }}>
+          Exclusive Luxury Properties for{' '}
+          <span className="text-gold-gradient">Discerning Investors</span>
+        </h1>
 
-          <p className="text-white/70 text-lg sm:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-            Verified Premium Listings in Abia, Imo & Beyond. Experience luxury real estate with unmatched professionalism.
-          </p>
+        {/* Subheadline */}
+        <p style={{
+          color: 'rgba(255,255,255,0.7)',
+          fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+          maxWidth: '40rem',
+          margin: '0 auto 2.5rem',
+          fontWeight: 300,
+          lineHeight: 1.7
+        }}>
+          Verified Premium Listings in Abia, Imo & Beyond. Experience luxury real estate with unmatched professionalism.
+        </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="#properties"
-              className="btn-gold text-[#0a192f] px-8 py-4 rounded font-semibold text-base tracking-wide hover:shadow-lg hover:shadow-[#d4af37]/20 transition-all duration-300 w-full sm:w-auto"
-            >
-              Browse Exclusive Listings
-            </a>
-            <a
-              href="https://wa.me/2347025899649?text=Hi%20GLOBAL%20AGENCY%2C%20I%27m%20interested%20in%20your%20exclusive%20listings."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center space-x-2 border-2 border-white/30 text-white px-8 py-4 rounded font-semibold text-base hover:bg-white/10 hover:border-[#d4af37] transition-all duration-300 w-full sm:w-auto"
-            >
-              <MessageCircle size={20} />
-              <span>Concierge WhatsApp</span>
-            </a>
-          </div>
+        {/* CTA Buttons */}
+        <div className="cta-row">
+          <a
+            href="#properties"
+            className="btn-gold"
+            style={{
+              color: '#0a192f',
+              padding: '1rem 2rem',
+              borderRadius: '0.5rem',
+              fontWeight: 600,
+              fontSize: '1rem',
+              letterSpacing: '0.02em',
+              textDecoration: 'none',
+              width: '100%',
+              maxWidth: '300px'
+            }}
+          >
+            Browse Exclusive Listings
+          </a>
+          <a
+            href="https://wa.me/2347025899649?text=Hi%20GLOBAL%20AGENCY%2C%20I%27m%20interested%20in%20your%20exclusive%20listings."
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              border: '2px solid rgba(255,255,255,0.3)',
+              color: '#ffffff',
+              padding: '1rem 2rem',
+              borderRadius: '0.5rem',
+              fontWeight: 600,
+              fontSize: '1rem',
+              textDecoration: 'none',
+              transition: 'all 0.3s',
+              width: '100%',
+              maxWidth: '300px'
+            }}
+          >
+            <MessageCircle size={20} />
+            <span>Concierge WhatsApp</span>
+          </a>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-        <ChevronDown className="text-white/50" size={32} />
+      <div style={{
+        position: 'absolute',
+        bottom: '6rem',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        animation: 'bounce 2s infinite'
+      }}>
+        <ChevronDown style={{ color: 'rgba(255,255,255,0.5)' }} size={32} />
       </div>
 
-      {/* Stats bar */}
-      <div className="absolute bottom-0 left-0 right-0 bg-[#0a192f]/80 backdrop-blur-md border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-4 grid grid-cols-3 gap-4">
-          <div className="text-center">
-            <div className="text-[#d4af37] font-heading text-2xl font-bold">150+</div>
-            <div className="text-white/60 text-xs sm:text-sm">Properties Sold</div>
+      {/* Stats Bar */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        background: 'rgba(10, 25, 47, 0.85)',
+        backdropFilter: 'blur(12px)',
+        borderTop: '1px solid rgba(255,255,255,0.1)'
+      }}>
+        <div className="stats-row" style={{ maxWidth: '1280px', margin: '0 auto', padding: '1rem' }}>
+          <div>
+            <div style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', fontWeight: 700 }}>150+</div>
+            <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}>Properties Sold</div>
           </div>
-          <div className="text-center border-x border-white/10">
-            <div className="text-[#d4af37] font-heading text-2xl font-bold">₦25B+</div>
-            <div className="text-white/60 text-xs sm:text-sm">Total Value</div>
+          <div>
+            <div style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', fontWeight: 700 }}>₦25B+</div>
+            <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}>Total Value</div>
           </div>
-          <div className="text-center">
-            <div className="text-[#d4af37] font-heading text-2xl font-bold">98%</div>
-            <div className="text-white/60 text-xs sm:text-sm">Client Satisfaction</div>
+          <div>
+            <div style={{ color: '#d4af37', fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', fontWeight: 700 }}>98%</div>
+            <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem' }}>Client Satisfaction</div>
           </div>
         </div>
       </div>
@@ -75,12 +166,15 @@ export default function Hero() {
       <style>{`
         @keyframes kenburns {
           0% { transform: scale(1); }
-          100% { transform: scale(1.1); }
+          100% { transform: scale(1.08); }
         }
-        @keyframes fadeSlider {
-          0%, 45% { opacity: 0; }
-          50%, 95% { opacity: 1; }
-          100% { opacity: 0; }
+        @keyframes bounce {
+          0%, 100% { transform: translateX(-50%) translateY(0); }
+          50% { transform: translateX(-50%) translateY(-10px); }
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
         }
       `}</style>
     </section>
